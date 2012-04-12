@@ -19,8 +19,6 @@
 		
 			base.options = $.extend({}, $.beGallery.defaultOptions, options);
 			
-			//
-			
 			var $element = $('figure:first-child', base.$el);
 			
 			if (window.location.hash) {
@@ -31,11 +29,13 @@
 			
 			}
 			
+			base.resizeImages();
+
 			base.animateGallery($element);
 			
 			// bind events
 			
-			$('img', base.$el).bind('click.beGallery', function(event) {
+			$('img', base.$el).on('click.beGallery', function(event) {
 			
 				event.preventDefault();
 				
@@ -47,14 +47,14 @@
 				
 			});
 			
-			$('img', base.$el).bind("contextmenu.beGallery", function() {
+			$('img', base.$el).on("contextmenu.beGallery", function() {
 							
 				alert('No right clicking, you bastard');
 				return false;
 				
 			});
 			
-			$('img', base.$el).bind('dragstart.beGallery', function(event) {
+			$('img', base.$el).on('dragstart.beGallery', function(event) {
 				event.preventDefault();
 			});
 	
@@ -80,8 +80,8 @@
 			var original_position;
 
 			$('img', base.$el).swipe({
-				swipeStatus: function(event, phase, direction, distance) {
 
+				swipeStatus: function(event, phase, direction, distance) {
 
 					var $gallery_slider = $('.gallery-slider', base.$el);
 
